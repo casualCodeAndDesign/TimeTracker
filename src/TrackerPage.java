@@ -46,12 +46,32 @@ public class TrackerPage extends javax.swing.JFrame {
         tbEndDate.setText("End Date");
 
         btStartDate.setText("Current Time");
+        btStartDate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btStartDateActionPerformed(evt);
+            }
+        });
 
         btEndDate.setText("Current Time");
+        btEndDate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btEndDateActionPerformed(evt);
+            }
+        });
 
         btLog.setText("Log Hours");
+        btLog.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btLogActionPerformed(evt);
+            }
+        });
 
         btExport.setText("Export Hours");
+        btExport.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btExportActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -104,6 +124,22 @@ public class TrackerPage extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btStartDateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btStartDateActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btStartDateActionPerformed
+
+    private void btEndDateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEndDateActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btEndDateActionPerformed
+
+    private void btLogActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btLogActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btLogActionPerformed
+
+    private void btExportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btExportActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btExportActionPerformed
 
     /**
      * @param args the command line arguments

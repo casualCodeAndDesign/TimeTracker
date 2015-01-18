@@ -108,21 +108,33 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Current Time"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btStartDateActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btEndDate">
       <Properties>
         <Property name="text" type="java.lang.String" value="Current Time"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btEndDateActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btLog">
       <Properties>
         <Property name="text" type="java.lang.String" value="Log Hours"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btLogActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btExport">
       <Properties>
         <Property name="text" type="java.lang.String" value="Export Hours"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btExportActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>
