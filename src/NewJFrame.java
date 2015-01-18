@@ -8,6 +8,8 @@
  *
  * @author Johnny
  */
+import java.awt.BorderLayout;
+
 public class NewJFrame extends javax.swing.JFrame {
 
     /**
@@ -114,6 +116,10 @@ public class NewJFrame extends javax.swing.JFrame {
 
     private void btLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btLoginActionPerformed
         // TODO add your handling code here:
+        //TrackerPage trackerPage = new TrackerPage.
+        TrackerPage tp = new TrackerPage();
+        setVisible(false);
+        dispose();
     }//GEN-LAST:event_btLoginActionPerformed
 
     private void tbUsernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tbUsernameActionPerformed

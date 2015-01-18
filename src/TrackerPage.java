@@ -15,6 +15,7 @@ public class TrackerPage extends javax.swing.JFrame {
      */
     public TrackerPage() {
         initComponents();
+        setVisible(true);
     }
 
     /**
@@ -86,19 +87,16 @@ public class TrackerPage extends javax.swing.JFrame {
                         .addComponent(lbTotal))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(tbStartDate, javax.swing.GroupLayout.DEFAULT_SIZE, 94, Short.MAX_VALUE)
-                                .addGap(18, 18, 18))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(tbEndDate)
-                                .addGap(18, 18, 18)))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btStartDate, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(btEndDate, javax.swing.GroupLayout.Alignment.TRAILING)))
+                            .addComponent(tbStartDate, javax.swing.GroupLayout.DEFAULT_SIZE, 157, Short.MAX_VALUE)
+                            .addComponent(tbEndDate))
+                        .addGap(20, 20, 20)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(btEndDate)
+                            .addComponent(btStartDate)))
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addComponent(btLog, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btExport, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addContainerGap(130, Short.MAX_VALUE))
+                .addContainerGap(80, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -127,10 +125,18 @@ public class TrackerPage extends javax.swing.JFrame {
 
     private void btStartDateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btStartDateActionPerformed
         // TODO add your handling code here:
+        java.util.Date dt = new java.util.Date();
+        java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String currentTime = sdf.format(dt);
+        tbStartDate.setText(currentTime);
     }//GEN-LAST:event_btStartDateActionPerformed
 
     private void btEndDateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEndDateActionPerformed
         // TODO add your handling code here:
+        java.util.Date dt = new java.util.Date();
+        java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String currentTime = sdf.format(dt);
+        tbEndDate.setText(currentTime);
     }//GEN-LAST:event_btEndDateActionPerformed
 
     private void btLogActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btLogActionPerformed
