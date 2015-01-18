@@ -33,6 +33,7 @@ public class NewJFrame extends javax.swing.JFrame {
         lbUsername = new javax.swing.JLabel();
         lbPassword = new javax.swing.JLabel();
         btLogin = new javax.swing.JButton();
+        lbCopyright = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -41,14 +42,11 @@ public class NewJFrame extends javax.swing.JFrame {
         lbProgramVersion.setFont(new java.awt.Font("Gill Sans MT", 0, 18)); // NOI18N
         lbProgramVersion.setText("Login");
 
-        tbUsername.setText("jTextField1");
         tbUsername.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tbUsernameActionPerformed(evt);
             }
         });
-
-        tbPassword.setText("jTextField2");
 
         lbUsername.setText("Username:");
 
@@ -60,6 +58,9 @@ public class NewJFrame extends javax.swing.JFrame {
                 btLoginActionPerformed(evt);
             }
         });
+
+        lbCopyright.setFont(new java.awt.Font("Tahoma", 0, 8)); // NOI18N
+        lbCopyright.setText("©Unison Software 2015");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -75,12 +76,15 @@ public class NewJFrame extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(tbUsername, javax.swing.GroupLayout.DEFAULT_SIZE, 165, Short.MAX_VALUE)
-                                .addComponent(tbPassword))
+                                .addComponent(tbUsername)
+                                .addComponent(tbPassword, javax.swing.GroupLayout.DEFAULT_SIZE, 165, Short.MAX_VALUE))
                             .addComponent(lbUsername)
                             .addComponent(lbPassword)
                             .addComponent(btLogin))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(lbCopyright)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -100,7 +104,9 @@ public class NewJFrame extends javax.swing.JFrame {
                 .addComponent(tbPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(36, 36, 36)
                 .addComponent(btLogin)
-                .addContainerGap(89, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 68, Short.MAX_VALUE)
+                .addComponent(lbCopyright)
+                .addContainerGap())
         );
 
         pack();
@@ -151,6 +157,7 @@ public class NewJFrame extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btLogin;
+    private javax.swing.JLabel lbCopyright;
     private javax.swing.JLabel lbLogin;
     private javax.swing.JLabel lbPassword;
     private javax.swing.JLabel lbProgramVersion;
