@@ -8,10 +8,16 @@
  *
  * @author Johnny
  */
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+
+
 public class ConnectionString {
-    
-    String connection;
-    public ConnectionString() {
-        connection = "jdbc:sqlserver://donvfg7xum.database.windows.net:1433;database=unison;user=javacourse@donvfg7xum;password={your_password_here};encrypt=true;hostNameInCertificate=*.database.windows.net;loginTimeout=30;";
-    }
+    String driver = "com.mysql.jdbc.Driver";
+    String connection = "jdbc:mysql://eu-cdbr-azure-north-b.cloudapp.net/cdb_9317ad04d7";
+    String user = "b6a81817dfe22a";
+    String password = "89a8ee8c";
+    Class.forName(driver);
+    Connection con = DriverManager.getConnection (connection, user, password);
 }

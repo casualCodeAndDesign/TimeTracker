@@ -14,7 +14,7 @@ public class UserDAO {
     public boolean UserLogin(String username, String password) {
         try
         {
-            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver"); 
+            Class.forName("com.mysql.jdbc.Driver"); 
             Connection con = DriverManager.getConnection("jdbc:sqlserver://donvfg7xum.database.windows.net:1433;database=unison;user=javacourse@donvfg7xum;password={your_password_here};encrypt=true;hostNameInCertificate=*.database.windows.net;loginTimeout=30;");
             System.out.println("Connected");
         
