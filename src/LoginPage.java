@@ -118,8 +118,7 @@ public class LoginPage extends javax.swing.JFrame {
     private void btLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btLoginActionPerformed
         // TODO add your handling code here:
         //TrackerPage trackerPage = new TrackerPage.
-        if(userDAO.UserLogin(tbUsername.getText(), tbPassword.getText()))
-        {
+        if(userDAO.UserLogin(tbUsername.getText(), tbPassword.getText())) {
             TrackerPage tp = new TrackerPage();
             setVisible(false);
             dispose();   

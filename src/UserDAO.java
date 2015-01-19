@@ -11,21 +11,28 @@
 import java.sql.*;
 public class UserDAO {
 
-    public boolean UserLogin(String username, String password) {
+    public boolean UserLogin(String user, String password) {
         try
         {
-            java.lang.Class.forName("com.mysql.jdbc.Driver"); 
-            Connection con = DriverManager.getConnection("jdbc:sqlserver://donvfg7xum.database.windows.net:1433;database=unison;user=javacourse@donvfg7xum;password={your_password_here};encrypt=true;hostNameInCertificate=*.database.windows.net;loginTimeout=30;");
+            String driver = "com.mysql.jdbc.Driver";
+            String connection = "jdbc:mysql://eu-cdbr-azure-north-b.cloudapp.net/cdb_9317ad04d7";
+            user = "b6a81817dfe22a";
+            password = "89a8ee8c";
+    
+    java.lang.Class.forName(driver);
+    
+    Connection con = DriverManager.getConnection(connection, user, password);
+            Class.forName("com.mysql.jdbc.Driver"); 
+            System.out.println("Opened UserLogin");
+            //jdbc:sqlserver://donvfg7xum.database.windows.net:1433;database=unison;user=javacourse@donvfg7xum;password={your_password_here};encrypt=true;hostNameInCertificate=*.database.windows.net;loginTimeout=30;
+            //Connection con = DriverManager.getConnection("jdbc:mysql://eu-cdbr-azure-north-b.cloudapp.net/cdb_9317ad04d7");
             System.out.println("Connected");
         
-            String SQL = String.format("SELECT username, password FROM user WHERE username = {0} && password = {1}");
+            String SQL = String.format("SELECT * FROM login;");
             Statement stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery(SQL);
         
-            while (rs.next())
-            {
-                System.out.println(rs.getString(username) + " " + rs.getString(password));
-            }
+            System.out.print(rs.getString("name"));
             return true;
         }
        catch(Exception e)  
