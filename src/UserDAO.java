@@ -21,11 +21,19 @@ public class UserDAO {
 
             System.out.println("Connected");
         
+            //String SQL = "SELECT * FROM login WHERE name='" + username + "' && password='" + password+ "'";
             String SQL = "select * from login;";
-       
             Statement stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery(SQL);
-            System.out.println(rs.next());
+            String[] names = new String[5];
+            int i = 0;
+            while(rs.next())
+            {
+                names[i] = rs.getString("name");
+                i = i +1;
+            }
+            //String name = rs.getString("name");
+            System.out.println(names[0] + "," + names[1] + "," + names[2] + "," + names[3] + "," + names[4]);
             rs.close();
             stmt.close();
             
