@@ -14,18 +14,24 @@ public class UserDAO {
     public boolean UserLogin(String username, String password) {
         try
         {
-            java.lang.Class.forName("com.mysql.jdbc.Driver"); 
-            Connection con = DriverManager.getConnection("jdbc:sqlserver://donvfg7xum.database.windows.net:1433;database=unison;user=javacourse@donvfg7xum;password={your_password_here};encrypt=true;hostNameInCertificate=*.database.windows.net;loginTimeout=30;");
+            String myDriver = "org.gjt.mm.mysql.Driver";
+            String myUrl = "jdbc:mysql://eu-cdbr-azure-north-b.cloudapp.net/cdb_9317ad04d7";
+
+            Connection conn = DriverManager.getConnection(myUrl, "b6a81817dfe22a", "89a8ee8c");
+
             System.out.println("Connected");
         
-            String SQL = String.format("SELECT username, password FROM user WHERE username = {0} && password = {1}");
-            Statement stmt = con.createStatement();
+            String SQL = "select * from login;";
+       
+            Statement stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery(SQL);
-        
-            while (rs.next())
-            {
-                System.out.println(rs.getString(username) + " " + rs.getString(password));
-            }
+            System.out.println(rs.next());
+            rs.close();
+            stmt.close();
+            
+            
+            
+            
             return true;
         }
        catch(Exception e)  
@@ -34,5 +40,10 @@ public class UserDAO {
             System.exit(0);
             return false;
        }
+        
+       finally
+        {
+           
+        }
     }
 }
