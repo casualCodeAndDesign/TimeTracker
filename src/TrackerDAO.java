@@ -19,7 +19,7 @@ public class TrackerDAO {
 
         Statement stmt = null; //creating an SQL-query string
         String SQL = "INSERT INTO tracker (ID, startDate, endDate) VALUES ('" + userName + "','" + startDate + "','" + endDate + "');";
-        
+        System.out.println("-------------------------------------------------------------------------------------------------------\nTrackerPage - UpdateDatabase\n-----------------------------------------------------------------------");
         try
         {
             boolean rowFound = false; //initializing a boolean to differentiate succesfull and un-succesful login
@@ -30,8 +30,13 @@ public class TrackerDAO {
             stmt = conn.createStatement(); //creating a statement
 
             System.out.println("Connected"); //testing for connection in development
-            stmt.executeUpdate(SQL);
-            //ResultSet rs = stmt.executeQuery(SQL); //executing the sql-query
+            System.out.println(SQL);
+            int update = stmt.executeUpdate(SQL);
+            if(update == 1)
+                System.out.println("User id: " + userName);
+            else
+                System.out.println("Update failed!");
+            System.out.println("Update succeeded!");
 
             System.out.println(SQL); //testing for the sql-query
 
