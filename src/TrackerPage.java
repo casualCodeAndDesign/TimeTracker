@@ -13,7 +13,9 @@ public class TrackerPage extends javax.swing.JFrame {
     /**
      * Creates new form TrackerPage
      */
-    public TrackerPage() {
+    public static String username;//Added columns ID as PRIMARY KEY to login and as FOREIGN KEY to tracker,
+    public static int userID, hours, minutes; //auto-incremented adn column totalHours to tracker type of Time 
+    public TrackerPage() {                  
         initComponents();
         setVisible(true);
     }
@@ -35,6 +37,7 @@ public class TrackerPage extends javax.swing.JFrame {
         btEndDate = new javax.swing.JButton();
         btLog = new javax.swing.JButton();
         btExport = new javax.swing.JButton();
+        lbLoggedInAs = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -74,6 +77,8 @@ public class TrackerPage extends javax.swing.JFrame {
             }
         });
 
+        lbLoggedInAs.setText("Logged in as:");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -84,7 +89,9 @@ public class TrackerPage extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(lbTitle)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lbTotal))
+                        .addComponent(lbTotal)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(lbLoggedInAs))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(tbStartDate, javax.swing.GroupLayout.DEFAULT_SIZE, 157, Short.MAX_VALUE)
@@ -96,7 +103,7 @@ public class TrackerPage extends javax.swing.JFrame {
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addComponent(btLog, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btExport, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addContainerGap(80, Short.MAX_VALUE))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -104,7 +111,8 @@ public class TrackerPage extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbTitle)
-                    .addComponent(lbTotal))
+                    .addComponent(lbTotal)
+                    .addComponent(lbLoggedInAs))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(tbStartDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -187,6 +195,7 @@ public class TrackerPage extends javax.swing.JFrame {
     private javax.swing.JButton btExport;
     private javax.swing.JButton btLog;
     private javax.swing.JButton btStartDate;
+    private javax.swing.JLabel lbLoggedInAs;
     private javax.swing.JLabel lbTitle;
     private javax.swing.JLabel lbTotal;
     private javax.swing.JTextField tbEndDate;

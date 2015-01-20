@@ -37,6 +37,7 @@ public class LoginPage extends javax.swing.JFrame {
         lbPassword = new javax.swing.JLabel();
         btLogin = new javax.swing.JButton();
         lbCopyright = new javax.swing.JLabel();
+        lbErrorMsg = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -76,6 +77,9 @@ public class LoginPage extends javax.swing.JFrame {
                         .addComponent(lbProgramVersion)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 243, Short.MAX_VALUE)
                         .addComponent(lbLogin))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(lbCopyright))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -83,11 +87,9 @@ public class LoginPage extends javax.swing.JFrame {
                                 .addComponent(tbPassword, javax.swing.GroupLayout.DEFAULT_SIZE, 165, Short.MAX_VALUE))
                             .addComponent(lbUsername)
                             .addComponent(lbPassword)
-                            .addComponent(btLogin))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(lbCopyright)))
+                            .addComponent(btLogin)
+                            .addComponent(lbErrorMsg))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -105,9 +107,11 @@ public class LoginPage extends javax.swing.JFrame {
                 .addComponent(lbPassword)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(tbPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(36, 36, 36)
+                .addGap(4, 4, 4)
+                .addComponent(lbErrorMsg)
+                .addGap(18, 18, 18)
                 .addComponent(btLogin)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 68, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 82, Short.MAX_VALUE)
                 .addComponent(lbCopyright)
                 .addContainerGap())
         );
@@ -124,6 +128,8 @@ public class LoginPage extends javax.swing.JFrame {
             setVisible(false);
             dispose();   
         }
+        else
+            lbErrorMsg.setText("Username/Password didn't match");
     }//GEN-LAST:event_btLoginActionPerformed
 
     private void tbUsernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tbUsernameActionPerformed
@@ -169,6 +175,7 @@ public class LoginPage extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btLogin;
     private javax.swing.JLabel lbCopyright;
+    private javax.swing.JLabel lbErrorMsg;
     private javax.swing.JLabel lbLogin;
     private javax.swing.JLabel lbPassword;
     private javax.swing.JLabel lbProgramVersion;

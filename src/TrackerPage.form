@@ -30,6 +30,8 @@
                       <Component id="lbTitle" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="lbTotal" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
+                      <Component id="lbLoggedInAs" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
@@ -47,7 +49,7 @@
                       <Component id="btExport" alignment="0" max="32767" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace pref="80" max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -58,6 +60,7 @@
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="lbTitle" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="lbTotal" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="lbLoggedInAs" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -130,6 +133,11 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btExportActionPerformed"/>
       </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lbLoggedInAs">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Logged in as:"/>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>
