@@ -43,9 +43,7 @@ public class UserDAO {
                 System.out.print(user);
                 userID = Integer.parseInt(rs.getString("ID"));
                 System.out.print(userID);
-                hours = 0;
                 System.out.print(hours);
-                minutes = 0;
                 System.out.print(minutes);
                 System.out.println("Data retrieved");
                 rowFound = true;
@@ -67,4 +65,6 @@ public class UserDAO {
     public int getID() { return userID; }
     public int getHours() { return hours; }
     public int getMinutes() { return minutes; }
+    public void setHours(int hours) { this.hours = hours; }
+    public void setMinutes(int minutes) { this.minutes = minutes; }
 }

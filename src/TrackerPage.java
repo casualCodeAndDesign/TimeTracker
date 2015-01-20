@@ -18,10 +18,10 @@ public class TrackerPage extends javax.swing.JFrame {
     /**
      * Creates new form TrackerPage
      */
-    private  String user;//Added columns ID as PRIMARY KEY to login and as FOREIGN KEY to tracker,
+    private  String user, totalMinutes;//Added columns ID as PRIMARY KEY to login and as FOREIGN KEY to tracker,
     private  int userID, hours, minutes; //auto-incremented adn column totalHours to tracker type of Time 
     TrackerDAO trackerDAO = new TrackerDAO();
-    
+    UserDAO userDAO = new UserDAO();
     public TrackerPage(String usr, int ID, int hours, int minutes) { 
         this.user = usr;
         this.userID = ID;
@@ -29,6 +29,11 @@ public class TrackerPage extends javax.swing.JFrame {
         this.minutes = minutes;
         initComponents();
         lbLoggedInAs.setText("Logged in as: " + usr);
+        if(userDAO.getMinutes() < 10)
+            totalMinutes = "0" + userDAO.getMinutes();
+        else
+            totalMinutes = "" + userDAO.getMinutes();
+        lbTotal.setText(userDAO.getHours() + ":" + totalMinutes);
         setVisible(true);
     }
 
@@ -191,7 +196,12 @@ public class TrackerPage extends javax.swing.JFrame {
             Timestamp sqlEndDate = new java.sql.Timestamp(endDate.getTime());
             
             trackerDAO.UpdateDatabase(sqlStartDate, sqlEndDate, userID);
-            
+            trackerDAO.UpdateTotalHours(userID);
+            if(userDAO.getMinutes() < 10)
+                totalMinutes = "0" + userDAO.getMinutes();
+            else
+                totalMinutes = "" + userDAO.getMinutes();
+            lbTotal.setText(userDAO.getHours() + ":" + totalMinutes);
         }
         catch (ParseException e) {
             

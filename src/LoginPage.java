@@ -17,6 +17,7 @@ public class LoginPage extends javax.swing.JFrame {
      */
     
     UserDAO userDAO = new UserDAO();
+    TrackerDAO trackerDAO = new TrackerDAO();
     public LoginPage() {
         initComponents();
     }
@@ -133,6 +134,7 @@ public class LoginPage extends javax.swing.JFrame {
             System.out.println(ID);
             System.out.println();
             System.out.println();
+            trackerDAO.UpdateTotalHours(ID);
             TrackerPage tp = new TrackerPage(userDAO.getUsername(), userDAO.getID(), userDAO.getHours(), userDAO.getMinutes());
             setVisible(false);
             dispose();   
