@@ -12,6 +12,7 @@ import java.sql.*;
 import java.util.Date;
 import java.text.ParseException;
 
+
 public class TrackerPage extends javax.swing.JFrame {
 
     /**
@@ -186,7 +187,7 @@ public class TrackerPage extends javax.swing.JFrame {
             java.sql.Date sqlStartDate = new java.sql.Date(startDate.getTime());
             java.sql.Date sqlEndDate = new java.sql.Date(endDate.getTime());
             
-            trackerDAO.UpdateDatabase(sqlStartDate, sqlEndDate, user);
+            trackerDAO.UpdateDatabase(sqlStartDate, sqlEndDate, userID);
             
         }
         catch (ParseException e) {

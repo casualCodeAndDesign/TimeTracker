@@ -15,7 +15,7 @@ public class TrackerDAO {
     private String user; //this variable values are accessed in the last page after successful login
     private int userID, hours, minutes; //userID is used to store new work-hour information
     
-    public boolean UpdateDatabase(java.sql.Date startDate, java.sql.Date endDate, String userName) {
+    public boolean UpdateDatabase(java.sql.Date startDate, java.sql.Date endDate, int userName) {
 
         Statement stmt = null; //creating an SQL-query string
         String SQL = "INSERT INTO tracker (ID, startDate, endDate) VALUES ('" + userName + "','" + startDate + "','" + endDate + "');";
@@ -30,30 +30,11 @@ public class TrackerDAO {
             stmt = conn.createStatement(); //creating a statement
 
             System.out.println("Connected"); //testing for connection in development
-
-            ResultSet rs = stmt.executeQuery(SQL); //executing the sql-query
+            stmt.executeUpdate(SQL);
+            //ResultSet rs = stmt.executeQuery(SQL); //executing the sql-query
 
             System.out.println(SQL); //testing for the sql-query
-    
-            
-            if(rs.next()) 
-            {
-                System.out.print("Username: " + rs.getString("name") + ", ID: " + rs.getString("ID") + ", Total Hours: " + rs.getString("totalHours"));
-                //if username exists in the table and the password is inputted correctly the values are stored in the variables 
-                // these values are then accessed in the new view after login
-                user = rs.getString("name");
-                System.out.print(user);
-                userID = Integer.parseInt(rs.getString("ID"));
-                System.out.print(userID);
-                hours = 0;
-                System.out.print(hours);
-                minutes = 0;
-                System.out.print(minutes);
-                System.out.println("Data retrieved");
-                rowFound = true;
-            }
-            //closing the connection and the resultset
-            rs.close(); 
+
             stmt.close();
             return rowFound;
         }
@@ -63,6 +44,10 @@ public class TrackerDAO {
             System.exit(0);
             return false;
        }
+        finally
+        {
+            
+        }
     }
     //getters for the variables
     public String getUsername() { return user; }
