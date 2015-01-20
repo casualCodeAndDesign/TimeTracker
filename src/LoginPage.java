@@ -42,7 +42,7 @@ public class LoginPage extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        lbLogin.setText("TimeTracker v.0.0.1");
+        lbLogin.setText("TimeTracker v.0.0.2");
 
         lbProgramVersion.setFont(new java.awt.Font("Gill Sans MT", 0, 18)); // NOI18N
         lbProgramVersion.setText("Login");

@@ -80,7 +80,7 @@
   <SubComponents>
     <Component class="javax.swing.JLabel" name="lbLogin">
       <Properties>
-        <Property name="text" type="java.lang.String" value="TimeTracker v.0.0.1"/>
+        <Property name="text" type="java.lang.String" value="TimeTracker v.0.0.2"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="lbProgramVersion">
