@@ -33,12 +33,12 @@ public class LoginPage extends javax.swing.JFrame {
         lbLogin = new javax.swing.JLabel();
         lbProgramVersion = new javax.swing.JLabel();
         tbUsername = new javax.swing.JTextField();
-        tbPassword = new javax.swing.JTextField();
         lbUsername = new javax.swing.JLabel();
         lbPassword = new javax.swing.JLabel();
         btLogin = new javax.swing.JButton();
         lbCopyright = new javax.swing.JLabel();
         lbErrorMsg = new javax.swing.JLabel();
+        tbPasswordField = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -80,13 +80,12 @@ public class LoginPage extends javax.swing.JFrame {
                         .addComponent(lbCopyright))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(tbUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lbProgramVersion)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(tbUsername)
-                                .addComponent(tbPassword, javax.swing.GroupLayout.DEFAULT_SIZE, 165, Short.MAX_VALUE))
                             .addComponent(lbUsername)
                             .addComponent(lbPassword)
                             .addComponent(btLogin)
+                            .addComponent(tbPasswordField, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lbErrorMsg))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
@@ -95,7 +94,7 @@ public class LoginPage extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(lbProgramVersion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lbProgramVersion, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE)
                 .addGap(31, 31, 31)
                 .addComponent(lbUsername)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -103,12 +102,12 @@ public class LoginPage extends javax.swing.JFrame {
                 .addGap(8, 8, 8)
                 .addComponent(lbPassword)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(tbPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(4, 4, 4)
+                .addComponent(tbPasswordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
                 .addComponent(lbErrorMsg)
                 .addGap(18, 18, 18)
                 .addComponent(btLogin)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 78, Short.MAX_VALUE)
+                .addGap(55, 55, 55)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbCopyright)
                     .addComponent(lbLogin))
@@ -121,7 +120,9 @@ public class LoginPage extends javax.swing.JFrame {
     private void btLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btLoginActionPerformed
         // TODO add your handling code here:
         //TrackerPage trackerPage = new TrackerPage.
-        if(userDAO.UserLogin(tbUsername.getText(), tbPassword.getText()))
+        char[] pass = tbPasswordField.getPassword();
+        String password = new String(pass);
+        if(userDAO.UserLogin(tbUsername.getText(), password))
         {
             String username = userDAO.getUsername();
             System.out.println(username);
@@ -185,7 +186,7 @@ public class LoginPage extends javax.swing.JFrame {
     private javax.swing.JLabel lbPassword;
     private javax.swing.JLabel lbProgramVersion;
     private javax.swing.JLabel lbUsername;
-    private javax.swing.JTextField tbPassword;
+    private javax.swing.JPasswordField tbPasswordField;
     private javax.swing.JTextField tbUsername;
     // End of variables declaration//GEN-END:variables
 }
