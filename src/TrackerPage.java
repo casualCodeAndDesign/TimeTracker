@@ -96,7 +96,7 @@ public class TrackerPage extends javax.swing.JFrame {
             }
         });
 
-        lbLogin.setText("TimeTracker v.0.0.2");
+        lbLogin.setText("TimeTracker v.0.0.4");
 
         lbCopyright.setFont(new java.awt.Font("Tahoma", 0, 8)); // NOI18N
         lbCopyright.setText("©Unison Software 2015");
