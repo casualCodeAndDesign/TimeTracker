@@ -8,6 +8,10 @@
  *
  * @author nate
  */
+import java.sql.*;
+import java.util.Date;
+import java.text.ParseException;
+
 public class TrackerPage extends javax.swing.JFrame {
 
     /**
@@ -15,6 +19,7 @@ public class TrackerPage extends javax.swing.JFrame {
      */
     private  String user;//Added columns ID as PRIMARY KEY to login and as FOREIGN KEY to tracker,
     private  int userID, hours, minutes; //auto-incremented adn column totalHours to tracker type of Time 
+    TrackerDAO trackerDAO = new TrackerDAO();
     
     public TrackerPage(String usr, int ID, int hours, int minutes) { 
         this.user = usr;
@@ -171,6 +176,25 @@ public class TrackerPage extends javax.swing.JFrame {
 
     private void btLogActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btLogActionPerformed
         // TODO add your handling code here:
+       
+        java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String startDateString = tbStartDate.getText();
+        String endDateString = tbEndDate.getText();
+        try{
+            Date startDate = sdf.parse(startDateString);
+            Date endDate = sdf.parse(endDateString);
+            java.sql.Date sqlStartDate = new java.sql.Date(startDate.getTime());
+            java.sql.Date sqlEndDate = new java.sql.Date(endDate.getTime());
+            
+            trackerDAO.UpdateDatabase(sqlStartDate, sqlEndDate, user);
+            
+        }
+        catch (ParseException e) {
+            
+        }
+        //Timestamp date = sdf.parse(tbStartDate.getText());
+        
+        //java.sql.Date sqlDate = new java.sql.Date(tbStartDate.getText());
     }//GEN-LAST:event_btLogActionPerformed
 
     private void btExportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btExportActionPerformed
