@@ -139,9 +139,8 @@ public class LoginPage extends javax.swing.JFrame {
         }
         else
         {
-            lbErrorMsg.setText("Username/Password didn't match");
-            tbUsername.setText("");
-            tbUsername.requestFocus();
+            lbErrorMsg.setText("Check your credentials.");
+            tbPasswordField.requestFocus();
             tbPasswordField.setText("");
             
         }

@@ -16,7 +16,7 @@ public class UserDAO {
     public boolean UserLogin(String username, String password) {
 
         Statement stmt = null; //creating an SQL-query string
-        String SQL = "SELECT login.ID, login.name, tracker.totalHours FROM login LEFT JOIN tracker ON tracker.ID=login.ID WHERE login.name  = '" + username + "' && password = '" + password + "';";
+        String SQL = "SELECT login.ID, login.name, totalhours.totalHours FROM login LEFT JOIN totalhours ON totalhours.ID=login.ID WHERE login.name  = '" + username + "' && password = '" + password + "';";
         
         try
         {
