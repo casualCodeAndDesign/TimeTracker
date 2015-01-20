@@ -178,14 +178,17 @@ public class TrackerPage extends javax.swing.JFrame {
     private void btLogActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btLogActionPerformed
         // TODO add your handling code here:
        
-        java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        java.text.SimpleDateFormat sdfStart = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        java.text.SimpleDateFormat sdfEnd = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         String startDateString = tbStartDate.getText();
         String endDateString = tbEndDate.getText();
         try{
-            Date startDate = sdf.parse(startDateString);
-            Date endDate = sdf.parse(endDateString);
-            java.sql.Date sqlStartDate = new java.sql.Date(startDate.getTime());
-            java.sql.Date sqlEndDate = new java.sql.Date(endDate.getTime());
+            
+            Date startDate = sdfStart.parse(startDateString);
+            Date endDate = sdfEnd.parse(endDateString);
+           
+            Timestamp sqlStartDate = new java.sql.Timestamp(startDate.getTime());
+            Timestamp sqlEndDate = new java.sql.Timestamp(endDate.getTime());
             
             trackerDAO.UpdateDatabase(sqlStartDate, sqlEndDate, userID);
             

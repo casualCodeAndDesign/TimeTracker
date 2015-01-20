@@ -15,7 +15,7 @@ public class TrackerDAO {
     private String user; //this variable values are accessed in the last page after successful login
     private int userID, hours, minutes; //userID is used to store new work-hour information
     
-    public boolean UpdateDatabase(java.sql.Date startDate, java.sql.Date endDate, int userName) {
+    public boolean UpdateDatabase(Timestamp startDate, Timestamp endDate, int userName) {
 
         Statement stmt = null; //creating an SQL-query string
         String SQL = "INSERT INTO tracker (ID, startDate, endDate) VALUES ('" + userName + "','" + startDate + "','" + endDate + "');";
