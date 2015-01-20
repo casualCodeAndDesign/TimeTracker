@@ -10,14 +10,17 @@
  */
 import java.sql.*;
 public class UserDAO {
-
+    private String user;
+    private int userID, hours, minutes;
+    
     public boolean UserLogin(String username, String password) {
 
         Statement stmt = null;
-        String SQL = "SELECT login.ID, name, tracker.totalHours FROM login JOIN tracker ON tracker.ID = login.ID WHERE name='" + username + "' && password='" + password+ "'";
+        String SQL = "SELECT login.ID, login.name, tracker.totalHours FROM login LEFT JOIN tracker ON tracker.ID=login.ID WHERE login.name  = '" + username + "' && password = '" + password + "';";
         
         try
         {
+            boolean rowFound = false;
             String myDriver = "org.gjt.mm.mysql.Driver";
             String myUrl = "jdbc:mysql://eu-cdbr-azure-north-b.cloudapp.net/cdb_9317ad04d7";
 
@@ -31,26 +34,23 @@ public class UserDAO {
             ResultSet rs = stmt.executeQuery(SQL);
 
             System.out.println(SQL);
-            boolean rowFound = false;    
-            rs.next();
-            System.out.println(rs.getString("ID"));
-            while(rs.isBeforeFirst())
-            {
-                rowFound = true;
-            }
+    
             
-            if(rowFound == true)
+            if(rs.next())
             {
                 System.out.print("Username: " + rs.getString("name") + ", ID: " + rs.getString("ID") + ", Total Hours: " + rs.getString("totalHours"));
-                TrackerPage.username = rs.getString("name");
-                System.out.print(TrackerPage.username);
-                TrackerPage.userID = Integer.parseInt(rs.getString("ID"));
-                System.out.print(TrackerPage.userID);
-                TrackerPage.hours = 0;
-                System.out.print(TrackerPage.hours);
-                TrackerPage.minutes = 0;
-                System.out.print(TrackerPage.minutes);
+                
+                
+                user = rs.getString("name");
+                System.out.print(user);
+                userID = Integer.parseInt(rs.getString("ID"));
+                System.out.print(userID);
+                hours = 0;
+                System.out.print(hours);
+                minutes = 0;
+                System.out.print(minutes);
                 System.out.println("Data retrieved");
+                rowFound = true;
             }
             else
             {
@@ -69,4 +69,9 @@ public class UserDAO {
             return false;
        }
     }
+    
+    public String getUsername() { return user; }
+    public int getID() { return userID; }
+    public int getHours() { return hours; }
+    public int getMinutes() { return minutes; }
 }

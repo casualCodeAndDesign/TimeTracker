@@ -15,6 +15,7 @@ public class LoginPage extends javax.swing.JFrame {
     /**
      * Creates new form NewJFrame
      */
+    
     UserDAO userDAO = new UserDAO();
     public LoginPage() {
         initComponents();
@@ -73,15 +74,13 @@ public class LoginPage extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(lbProgramVersion)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 243, Short.MAX_VALUE)
-                        .addComponent(lbLogin))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(lbLogin)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 200, Short.MAX_VALUE)
                         .addComponent(lbCopyright))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lbProgramVersion)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addComponent(tbUsername)
                                 .addComponent(tbPassword, javax.swing.GroupLayout.DEFAULT_SIZE, 165, Short.MAX_VALUE))
@@ -96,9 +95,7 @@ public class LoginPage extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lbLogin)
-                    .addComponent(lbProgramVersion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(lbProgramVersion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(31, 31, 31)
                 .addComponent(lbUsername)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -111,8 +108,10 @@ public class LoginPage extends javax.swing.JFrame {
                 .addComponent(lbErrorMsg)
                 .addGap(18, 18, 18)
                 .addComponent(btLogin)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 82, Short.MAX_VALUE)
-                .addComponent(lbCopyright)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 78, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lbCopyright)
+                    .addComponent(lbLogin))
                 .addContainerGap())
         );
 
@@ -124,7 +123,13 @@ public class LoginPage extends javax.swing.JFrame {
         //TrackerPage trackerPage = new TrackerPage.
         if(userDAO.UserLogin(tbUsername.getText(), tbPassword.getText()))
         {
-            TrackerPage tp = new TrackerPage();
+            String username = userDAO.getUsername();
+            System.out.println(username);
+            int ID = userDAO.getID();
+            System.out.println(ID);
+            System.out.println();
+            System.out.println();
+            TrackerPage tp = new TrackerPage(userDAO.getUsername(), userDAO.getID(), userDAO.getHours(), userDAO.getMinutes());
             setVisible(false);
             dispose();   
         }
