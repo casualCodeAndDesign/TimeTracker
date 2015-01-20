@@ -47,6 +47,7 @@ public class LoginPage extends javax.swing.JFrame {
         lbProgramVersion.setFont(new java.awt.Font("Gill Sans MT", 0, 18)); // NOI18N
         lbProgramVersion.setText("Login");
 
+        tbUsername.setToolTipText("Your username....");
         tbUsername.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tbUsernameActionPerformed(evt);
@@ -66,6 +67,8 @@ public class LoginPage extends javax.swing.JFrame {
 
         lbCopyright.setFont(new java.awt.Font("Tahoma", 0, 8)); // NOI18N
         lbCopyright.setText("©Unison Software 2015");
+
+        tbPasswordField.setToolTipText("Password...");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -135,7 +138,13 @@ public class LoginPage extends javax.swing.JFrame {
             dispose();   
         }
         else
+        {
             lbErrorMsg.setText("Username/Password didn't match");
+            tbUsername.setText("");
+            tbUsername.requestFocus();
+            tbPasswordField.setText("");
+            
+        }
     }//GEN-LAST:event_btLoginActionPerformed
 
     private void tbUsernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tbUsernameActionPerformed

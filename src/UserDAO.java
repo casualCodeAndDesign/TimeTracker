@@ -10,37 +10,35 @@
  */
 import java.sql.*;
 public class UserDAO {
-    private String user;
-    private int userID, hours, minutes;
+    private String user; //this variable values are accessed in the last page after successful login
+    private int userID, hours, minutes; //userID is used to store new work-hour information
     
     public boolean UserLogin(String username, String password) {
 
-        Statement stmt = null;
+        Statement stmt = null; //creating an SQL-query string
         String SQL = "SELECT login.ID, login.name, tracker.totalHours FROM login LEFT JOIN tracker ON tracker.ID=login.ID WHERE login.name  = '" + username + "' && password = '" + password + "';";
         
         try
         {
-            boolean rowFound = false;
-            String myDriver = "org.gjt.mm.mysql.Driver";
-            String myUrl = "jdbc:mysql://eu-cdbr-azure-north-b.cloudapp.net/cdb_9317ad04d7";
+            boolean rowFound = false; //initializing a boolean to differentiate succesfull and un-succesful login
+            String myDriver = "org.gjt.mm.mysql.Driver"; //using hosted MYSQL-JBDC Driver
+            String myUrl = "jdbc:mysql://eu-cdbr-azure-north-b.cloudapp.net/cdb_9317ad04d7"; //url-string for CleraDB-database
 
-            Connection conn = DriverManager.getConnection(myUrl, "b6a81817dfe22a", "89a8ee8c");
-            stmt = conn.createStatement();
+            Connection conn = DriverManager.getConnection(myUrl, "b6a81817dfe22a", "89a8ee8c"); //setting the connection string
+            stmt = conn.createStatement(); //creating a statement
 
-            System.out.println("Connected");
-            //String SQL = "select * from login;";
-            //Statement stmt = conn.createStatement();
+            System.out.println("Connected"); //testing for connection in development
 
-            ResultSet rs = stmt.executeQuery(SQL);
+            ResultSet rs = stmt.executeQuery(SQL); //executing the sql-query
 
-            System.out.println(SQL);
+            System.out.println(SQL); //testing for the sql-query
     
             
-            if(rs.next())
+            if(rs.next()) 
             {
                 System.out.print("Username: " + rs.getString("name") + ", ID: " + rs.getString("ID") + ", Total Hours: " + rs.getString("totalHours"));
-                
-                
+                //if username exists in the table and the password is inputted correctly the values are stored in the variables 
+                // these values are then accessed in the new view after login
                 user = rs.getString("name");
                 System.out.print(user);
                 userID = Integer.parseInt(rs.getString("ID"));
@@ -52,24 +50,19 @@ public class UserDAO {
                 System.out.println("Data retrieved");
                 rowFound = true;
             }
-            else
-            {
-                System.out.println("Error in connection");
-            }
-            //String name = rs.getString("name");
-            //System.out.println(names[0] + "," + names[1] + "," + names[2] + "," + names[3] + "," + names[4]);
+            //closing the connection and the resultset
             rs.close(); 
             stmt.close();
             return rowFound;
         }
        catch(SQLException e)  
        { 
-            System.out.println(e); 
+            System.out.println(e);
             System.exit(0);
             return false;
        }
     }
-    
+    //getters for the variables
     public String getUsername() { return user; }
     public int getID() { return userID; }
     public int getHours() { return hours; }

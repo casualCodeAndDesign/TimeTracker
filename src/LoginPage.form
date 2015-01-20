@@ -90,6 +90,9 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="tbUsername">
+      <Properties>
+        <Property name="toolTipText" type="java.lang.String" value="Your username...."/>
+      </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tbUsernameActionPerformed"/>
       </Events>
@@ -123,6 +126,9 @@
     <Component class="javax.swing.JLabel" name="lbErrorMsg">
     </Component>
     <Component class="javax.swing.JPasswordField" name="tbPasswordField">
+      <Properties>
+        <Property name="toolTipText" type="java.lang.String" value="Password..."/>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>
