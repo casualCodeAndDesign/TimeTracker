@@ -115,13 +115,12 @@ public class TrackerDAO {
 
             System.out.println("Connected"); //testing for connection in development
             ResultSet rs = stmt.executeQuery(SQL);
-            for(int i = 0; i <= totalHours.length; i++)
-            {
-                rs.next();
-                totalHours[i] = rs.getInt("total_hours");
-                System.out.println(totalHours[i] + " array number");
-            }
-            
+            int i = 0;
+            while(rs.next()) {
+                    totalHours[i] = rs.getInt("total_hours");
+                    System.out.println(totalHours[i] + " array number");
+                    i = i + 1;
+            }   
             rs.close();
             stmt.close();
             return totalHours;
