@@ -79,8 +79,9 @@ public class TrackerDAO {
                 total = rs.getInt("total_hours");
             }
             System.out.println("Total hours: " + total);
-            userDAO.setHours(total * 3600);
-            userDAO.setMinutes(total * 60);
+            userDAO.setHours(total / 3600);
+            userDAO.setMinutes(total / 60);
+            System.out.println("\n\n-------------------------------------------------------------------------------------------------------\n\nTOTAL HOURS: " + userDAO.getHours() + ":" + userDAO.getMinutes());
             SQL = "UPDATE totalhours SET totalHours = SEC_TO_TIME(" + total + ") WHERE ID = " + userID + ";";
             int update = stmt.executeUpdate(SQL);
             if(update == 1)
@@ -96,6 +97,40 @@ public class TrackerDAO {
             System.out.println(e);
             System.exit(0);
             return false;
+       }
+    }
+    
+    public int[] totalHours(int userID) {
+        Statement stmt = null; //creating an SQL-query string
+        String SQL = "SELECT SUM(TIME_TO_SEC(TIMEDIFF(endDate, startDate))) as total_hours FROM tracker WHERE ID = " + userID + ";";
+        int[] totalHours = new int[2];
+        try
+        {
+            System.out.println("SQL-Query:\n" +SQL);
+            String myDriver = "org.gjt.mm.mysql.Driver"; //using hosted MYSQL-JBDC Driver
+            String myUrl = "jdbc:mysql://eu-cdbr-azure-north-b.cloudapp.net/cdb_9317ad04d7"; //url-string for CleraDB-database
+
+            Connection conn = DriverManager.getConnection(myUrl, "b6a81817dfe22a", "89a8ee8c"); //setting the connection string
+            stmt = conn.createStatement(); //creating a statement
+
+            System.out.println("Connected"); //testing for connection in development
+            ResultSet rs = stmt.executeQuery(SQL);
+            for(int i = 0; i <= totalHours.length; i++)
+            {
+                rs.next();
+                totalHours[i] = rs.getInt("total_hours");
+                System.out.println(totalHours[i] + " array number");
+            }
+            
+            rs.close();
+            stmt.close();
+            return totalHours;
+        }
+       catch(SQLException e)  
+       { 
+            System.out.println(e);
+            System.exit(0);
+            return totalHours;
        }
     }
     //getters for the variables

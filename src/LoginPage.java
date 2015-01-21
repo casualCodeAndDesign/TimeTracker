@@ -135,7 +135,7 @@ public class LoginPage extends javax.swing.JFrame {
             System.out.println();
             System.out.println();
             trackerDAO.UpdateTotalHours(ID);
-            TrackerPage tp = new TrackerPage(userDAO.getUsername(), userDAO.getID(), userDAO.getHours(), userDAO.getMinutes());
+            TrackerPage tp = new TrackerPage(userDAO.getUsername(), userDAO.getID());
             setVisible(false);
             dispose();   
         }

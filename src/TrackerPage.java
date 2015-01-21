@@ -20,19 +20,22 @@ public class TrackerPage extends javax.swing.JFrame {
      */
     private  String user, totalMinutes;//Added columns ID as PRIMARY KEY to login and as FOREIGN KEY to tracker,
     private  int userID, hours, minutes; //auto-incremented adn column totalHours to tracker type of Time 
+    private int[] totalHours;
     TrackerDAO trackerDAO = new TrackerDAO();
     UserDAO userDAO = new UserDAO();
-    public TrackerPage(String usr, int ID, int hours, int minutes) { 
+    public TrackerPage(String usr, int ID) { 
+        
         this.user = usr;
         this.userID = ID;
-        this.hours = hours;
-        this.minutes = minutes;
+        totalHours = trackerDAO.totalHours(userID);
+        hours = totalHours[0] / 3600;
+        this.minutes = totalHours[1] / 60;
         initComponents();
         lbLoggedInAs.setText("Logged in as: " + usr);
-        if(userDAO.getMinutes() < 10)
-            totalMinutes = "0" + userDAO.getMinutes();
+        if(minutes < 10)
+            totalMinutes = "0" + minutes;
         else
-            totalMinutes = "" + userDAO.getMinutes();
+            totalMinutes = "" + minutes;
         lbTotal.setText(userDAO.getHours() + ":" + totalMinutes);
         setVisible(true);
     }
@@ -197,10 +200,11 @@ public class TrackerPage extends javax.swing.JFrame {
             
             trackerDAO.UpdateDatabase(sqlStartDate, sqlEndDate, userID);
             trackerDAO.UpdateTotalHours(userID);
-            if(userDAO.getMinutes() < 10)
-                totalMinutes = "0" + userDAO.getMinutes();
+            totalHours = trackerDAO.totalHours(userID);
+            if(minutes < 10)
+                totalMinutes = "0" + minutes;
             else
-                totalMinutes = "" + userDAO.getMinutes();
+                totalMinutes = "" + minutes;
             lbTotal.setText(userDAO.getHours() + ":" + totalMinutes);
         }
         catch (ParseException e) {
@@ -245,7 +249,7 @@ public class TrackerPage extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new TrackerPage("", 0, 0, 0).setVisible(true);
+                new TrackerPage("", 0).setVisible(true);
             }
         });
     }
