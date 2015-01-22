@@ -19,23 +19,25 @@ public class TrackerPage extends javax.swing.JFrame {
      * Creates new form TrackerPage
      */
     private  String user, totalMinutes;//Added columns ID as PRIMARY KEY to login and as FOREIGN KEY to tracker,
-    private  int userID, hours, minutes; //auto-incremented adn column totalHours to tracker type of Time 
-    private int[] totalHours;
+    private  int userID;
+    private double hours, minutes; //auto-incremented adn column totalHours to tracker type of Time 
+    private double totalHours;
     TrackerDAO trackerDAO = new TrackerDAO();
     UserDAO userDAO = new UserDAO();
     public TrackerPage(String usr, int ID) { 
         
         this.user = usr;
         this.userID = ID;
-        totalHours = trackerDAO.totalHours(userID);
-        hours = totalHours[0] / 3600;
-        this.minutes = totalHours[1] / 60;
+        totalHours = trackerDAO.totalHoursInSeconds(userID);
+        hours = totalHours / 3600;
+        minutes = totalHours/60;
+        int min = (int)minutes;
         initComponents();
         lbLoggedInAs.setText("Logged in as: " + usr);
         if(minutes < 10)
-            totalMinutes = "0" + minutes;
+            totalMinutes = "0" + min;
         else
-            totalMinutes = "" + minutes;
+            totalMinutes = "" + min;
         lbTotal.setText(userDAO.getHours() + ":" + totalMinutes);
         setVisible(true);
     }
@@ -99,7 +101,7 @@ public class TrackerPage extends javax.swing.JFrame {
             }
         });
 
-        lbLogin.setText("TimeTracker v.0.0.4");
+        lbLogin.setText("TimeTracker v.0.0.5");
 
         lbCopyright.setFont(new java.awt.Font("Tahoma", 0, 8)); // NOI18N
         lbCopyright.setText("©Unison Software 2015");
@@ -200,11 +202,12 @@ public class TrackerPage extends javax.swing.JFrame {
             
             trackerDAO.UpdateDatabase(sqlStartDate, sqlEndDate, userID);
             trackerDAO.UpdateTotalHours(userID);
-            totalHours = trackerDAO.totalHours(userID);
+            totalHours = trackerDAO.totalHoursInSeconds(userID);
+            int min = (int)minutes;
             if(minutes < 10)
-                totalMinutes = "0" + minutes;
+                totalMinutes = "0" + min;
             else
-                totalMinutes = "" + minutes;
+                totalMinutes = "" + min;
             lbTotal.setText(userDAO.getHours() + ":" + totalMinutes);
         }
         catch (ParseException e) {

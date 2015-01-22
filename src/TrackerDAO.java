@@ -100,10 +100,12 @@ public class TrackerDAO {
        }
     }
     
-    public int[] totalHours(int userID) {
+    public double totalHoursInSeconds(int userID) {
         Statement stmt = null; //creating an SQL-query string
         String SQL = "SELECT SUM(TIME_TO_SEC(TIMEDIFF(endDate, startDate))) as total_hours FROM tracker WHERE ID = " + userID + ";";
-        int[] totalHours = new int[2];
+        System.out.println("\n\n------------------------------------------------------------------------------------------------------\n\n");
+        System.out.print("TotalHours Getter Method");
+        double totalHours = 0;
         try
         {
             System.out.println("SQL-Query:\n" +SQL);
@@ -115,11 +117,8 @@ public class TrackerDAO {
 
             System.out.println("Connected"); //testing for connection in development
             ResultSet rs = stmt.executeQuery(SQL);
-            int i = 0;
             while(rs.next()) {
-                    totalHours[i] = rs.getInt("total_hours");
-                    System.out.println(totalHours[i] + " array number");
-                    i = i + 1;
+                    totalHours = rs.getDouble("total_hours");
             }   
             rs.close();
             stmt.close();
@@ -129,7 +128,7 @@ public class TrackerDAO {
        { 
             System.out.println(e);
             System.exit(0);
-            return totalHours;
+            return 0;
        }
     }
     //getters for the variables
