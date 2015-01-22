@@ -13,7 +13,7 @@ public class UserDAO {
     private String user; //this variable values are accessed in the last page after successful login
     private int userID, hours, minutes; //userID is used to store new work-hour information
     
-    public boolean UserLogin(String username, String password) {
+    public boolean UserLogin(String username, String password) throws SQLException{
 
         Statement stmt = null; //creating an SQL-query string
         String SQL = "SELECT login.ID, login.name, totalhours.totalHours FROM login LEFT JOIN totalhours ON totalhours.ID=login.ID WHERE login.name  = '" + username + "' && password = '" + password + "';";
@@ -50,7 +50,7 @@ public class UserDAO {
             }
             //closing the connection and the resultset
             rs.close(); 
-            stmt.close();
+            
             return rowFound;
         }
        catch(SQLException e)  
@@ -59,6 +59,9 @@ public class UserDAO {
             System.exit(0);
             return false;
        }
+       finally{
+            stmt.close();
+        } 
     }
     //getters for the variables
     public String getUsername() { return user; }

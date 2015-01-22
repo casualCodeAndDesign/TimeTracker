@@ -9,6 +9,7 @@
  * @author Johnny
  */
 import java.awt.BorderLayout;
+import java.sql.SQLException;
 
 public class LoginPage extends javax.swing.JFrame {
 
@@ -123,7 +124,9 @@ public class LoginPage extends javax.swing.JFrame {
 
     private void btLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btLoginActionPerformed
         // TODO add your handling code here:
-        //TrackerPage trackerPage = new TrackerPage.
+        try{
+            
+        
         char[] pass = tbPasswordField.getPassword();
         String password = new String(pass);
         if(userDAO.UserLogin(tbUsername.getText(), password))
@@ -144,6 +147,11 @@ public class LoginPage extends javax.swing.JFrame {
             lbErrorMsg.setText("Check your credentials.");
             tbPasswordField.requestFocus();
             tbPasswordField.setText("");
+            
+        }
+       }
+        catch(SQLException e)
+        {
             
         }
     }//GEN-LAST:event_btLoginActionPerformed

@@ -10,12 +10,14 @@
  */
 import java.sql.*;
 import java.util.Date;
+import java.lang.Object;
+import java.io.*;
+import com.opencsv.*;
 
 public class TrackerDAO {
-   // private String user; //this variable values are accessed in the last page after successful login
-    //private int userID, hours, minutes; //userID is used to store new work-hour information
+
     UserDAO userDAO = new UserDAO();
-    public boolean UpdateDatabase(Timestamp startDate, Timestamp endDate, int userName) {
+    public boolean UpdateDatabase(Timestamp startDate, Timestamp endDate, int userName) throws SQLException{
 
         Statement stmt = null; //creating an SQL-query string
         String SQL = "INSERT INTO tracker (ID, startDate, endDate) VALUES ('" + userName + "','" + startDate + "','" + endDate + "');";
@@ -40,7 +42,7 @@ public class TrackerDAO {
             
             System.out.println(SQL); //testing for the sql-query
 
-            stmt.close();
+            
             return rowFound;
         }
        catch(SQLException e)  
@@ -51,11 +53,11 @@ public class TrackerDAO {
        }
         finally
         {
-            
+          stmt.close();  
         }
     }
     
-    public boolean UpdateTotalHours(int userID) {
+    public boolean UpdateTotalHours(int userID) throws SQLException{
         Statement stmt = null; //creating an SQL-query string
         String SQL = "SELECT SUM(TIME_TO_SEC(TIMEDIFF(endDate, startDate))) as total_hours FROM tracker WHERE ID = " + userID + ";";
         int total = 0;
@@ -89,7 +91,7 @@ public class TrackerDAO {
             else
                 System.out.println("Failed to update");
             System.out.println("New SQL-Query:\n"+SQL);
-            stmt.close();
+            
             return rowFound;
         }
        catch(SQLException e)  
@@ -98,9 +100,12 @@ public class TrackerDAO {
             System.exit(0);
             return false;
        }
+        finally{
+            stmt.close();
+        }
     }
     
-    public double totalHoursInSeconds(int userID) {
+    public double totalHoursInSeconds(int userID) throws SQLException{
         Statement stmt = null; //creating an SQL-query string
         String SQL = "SELECT SUM(TIME_TO_SEC(TIMEDIFF(endDate, startDate))) as total_hours FROM tracker WHERE ID = " + userID + ";";
         System.out.println("\n\n------------------------------------------------------------------------------------------------------\n\n");
@@ -121,7 +126,7 @@ public class TrackerDAO {
                     totalHours = rs.getDouble("total_hours");
             }   
             rs.close();
-            stmt.close();
+            
             return totalHours;
         }
        catch(SQLException e)  
@@ -130,10 +135,55 @@ public class TrackerDAO {
             System.exit(0);
             return 0;
        }
+        finally{
+            stmt.close();
+        }
     }
-    //getters for the variables
-   // public String getUsername() { return user; }
-    //public int getID() { return userID; }
-    //public int getHours() { return hours; }
-    //public int getMinutes() { return minutes; }
+
+    public boolean exportToText(int userID) throws SQLException {
+        Statement stmt = null; //creating an SQL-query string
+        String SQL = "SELECT * FROM tracker WHERE ID = " + userID + ";";
+        System.out.println("\n\n------------------------------------------------------------------------------------------------------\n\n");
+        System.out.print("Export to Text Method");  
+        
+        try
+        {
+            System.out.println("SQL-Query:\n" +SQL);
+            String myDriver = "org.gjt.mm.mysql.Driver"; //using hosted MYSQL-JBDC Driver
+            String myUrl = "jdbc:mysql://eu-cdbr-azure-north-b.cloudapp.net/cdb_9317ad04d7"; //url-string for CleraDB-database
+            
+            String csv = "data.csv"; //declare new csv file
+            CSVWriter writer = new CSVWriter(new FileWriter(csv)); //Instantiate new writer
+            
+            Connection conn = DriverManager.getConnection(myUrl, "b6a81817dfe22a", "89a8ee8c"); //setting the connection string
+            stmt = conn.createStatement(); //creating a statement
+
+            System.out.println("Connected"); //testing for connection in development
+            ResultSet rs = stmt.executeQuery(SQL);
+            
+            //Write to csv file, flush stream, then finally close stream
+            writer.writeAll(rs, true); 
+            writer.flush();
+            writer.close();
+            
+            rs.close();
+            
+            return true;
+        }
+       catch(SQLException e)  
+       { 
+            System.out.println(e);
+            System.exit(0);
+            return false;
+       }
+        catch(IOException x)
+        {
+            return false;
+        }
+
+        finally
+        {
+            stmt.close();
+        }
+    }
 }
