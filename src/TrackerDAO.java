@@ -18,7 +18,7 @@ public class TrackerDAO {
 
     UserDAO userDAO = new UserDAO();
     public boolean UpdateDatabase(Timestamp startDate, Timestamp endDate, int userName) throws SQLException{
-
+//everything works
         Statement stmt = null; //creating an SQL-query string
         String SQL = "INSERT INTO tracker (ID, startDate, endDate) VALUES ('" + userName + "','" + startDate + "','" + endDate + "');";
         System.out.println("-------------------------------------------------------------------------------------------------------\nTrackerPage - UpdateDatabase\n-----------------------------------------------------------------------");
